@@ -47,8 +47,8 @@ class Empleado implements Invitable {
         this.apellido = apellido;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreo(String correo){
+            this.correo = correo;
     }
 
     public void setId(String id) {

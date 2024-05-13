@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-public class ReunionPresencial extends Reunion {
+class ReunionPresencial extends org.example.Reunion {
     private String sala;
 
     public ReunionPresencial(String sala, Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, tipoReunion tipoReunion) {
@@ -23,4 +23,3 @@ public class ReunionPresencial extends Reunion {
     }
 
 }
-

@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
 
-public class ReunionVirtual extends Reunion {
+class ReunionVirtual extends org.example.Reunion {
     private String enlace;
 
     public ReunionVirtual(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, tipoReunion tipoReunion, String enlace) {
