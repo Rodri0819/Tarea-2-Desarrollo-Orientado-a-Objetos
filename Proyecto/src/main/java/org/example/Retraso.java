@@ -2,6 +2,12 @@ package org.example;
 
 import java.time.Instant;
 
-public class Retraso {
-    private Instant hora;
+class Retraso {
+    private Empleado empleado;
+    private Instant horaLlegada;
+
+    public Retraso(Empleado empleado, Instant horaLlegada) {
+        this.empleado = empleado;
+        this.horaLlegada = horaLlegada;
+    }
 }
