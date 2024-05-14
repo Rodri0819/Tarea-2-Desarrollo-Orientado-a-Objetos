@@ -73,6 +73,13 @@ class Empleado implements Invitable {
         // Imprime el mensaje
         System.out.println("Invitación enviada a " + nombre + " via email: " + correo + " con detalles: " + mensaje);
     }
-
-
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id='" + id + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                '}';
+    }
 }

@@ -1,20 +1,17 @@
 package org.example;
 
+import java.time.Duration;
 import java.time.Instant;
 
 class Retraso extends Asistencia {
-    private Instant horaLlegada;
+    private Duration duracionRetraso;
 
-    public Retraso(Empleado empleado, Instant horaLlegada) {
-        super(empleado, true);  // Asumimos que el empleado ha asistido si llega tarde.
-        this.horaLlegada = horaLlegada;
+    public Retraso(Empleado empleado, Instant horaLlegada, Instant horaInicio) {
+        super(empleado, true, horaLlegada);
+        this.duracionRetraso = Duration.between(horaInicio, horaLlegada);
     }
 
-    public Instant getHoraLlegada() {
-        return horaLlegada;
-    }
-
-    public boolean esRetraso(Instant horaInicio) {
-        return horaLlegada.isAfter(horaInicio);
+    public Duration getDuracionRetraso() {
+        return duracionRetraso;
     }
 }
