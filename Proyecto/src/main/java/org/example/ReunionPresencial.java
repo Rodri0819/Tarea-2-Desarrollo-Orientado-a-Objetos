@@ -12,14 +12,23 @@ class ReunionPresencial extends org.example.Reunion {
         this.sala = sala;
     }
 
-    //Getters
+    //toString
+
+    @Override
+    public String toString() {
+        return "ReunionPresencial{" +
+                "sala='" + sala + '\'' +
+                '}';
+    }
+
+    //Getters y Setters
+
+
     public String getSala() {
         return sala;
     }
 
-    //Seters
     public void setSala(String sala) {
         this.sala = sala;
     }
-
 }

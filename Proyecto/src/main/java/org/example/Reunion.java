@@ -58,7 +58,7 @@ abstract class Reunion {
         }
 
         // Comprueba si la llegada es antes de la hora de inicio más un margen
-        boolean asistio = !horaLlegada.isAfter(horaInicio.plusSeconds(2));  // 2 segundos de margen
+        boolean asistio = !horaLlegada.isAfter(horaInicio.plusSeconds(5));  // 5 segundos de margen
         Asistencia nuevaAsistencia = asistio ? new Asistencia(empleado, asistio, horaLlegada) :
                 new Retraso(empleado, horaLlegada, this.horaInicio);
 
@@ -109,108 +109,126 @@ abstract class Reunion {
                 .collect(Collectors.toList());
     }
 
-
-    /**
-     * GETTERS
-     */
-    public Empleado getOrganizador() {
-        return organizador;
+    public void agregarNota(String contenido) {
+        Nota nota = new Nota(contenido);
+        this.notas.add(nota);
+        System.out.println("Nota agregada: " + contenido);
     }
+
+    public void listarNotas() {
+        System.out.println("Notas de la reunión:");
+        for (Nota nota : notas) {
+            System.out.println(nota.getContenido());
+        }
+    }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "Reunion{" +
+                "fecha=" + fecha +
+                ", horaPrevista=" + horaPrevista +
+                ", duracionPrevista=" + duracionPrevista +
+                ", horaInicio=" + horaInicio +
+                ", horaFin=" + horaFin +
+                ", asistencias=" + asistencias +
+                ", invitaciones=" + invitaciones +
+                ", notas=" + notas +
+                ", organizador=" + organizador +
+                ", tipoReunion=" + tipoReunion +
+                ", participantes=" + participantes +
+                '}';
+    }
+
+    //Getters y Setters
+
 
     public Date getFecha() {
         return fecha;
-    }
-
-    public Duration getDuracionPrevista() {
-        return duracionPrevista;
-    }
-
-    public Instant getHoraFin() {
-        return horaFin;
-    }
-
-    public Instant getHoraInicio() {
-        return horaInicio;
-    }
-
-    public Instant getHoraPrevista() {
-        return horaPrevista;
-    }
-
-    public org.example.tipoReunion getTipoReunion() {
-        return tipoReunion;
-    }
-
-    public List<Asistencia> getAsistencias() {
-        return asistencias;
-    }
-
-    public List<Invitable> getParticipantes() {
-        return participantes;
-    }
-
-    public List<Invitacion> getInvitaciones() {
-        return invitaciones;
-    }
-
-    public List<Nota> getNotas() {
-        return notas;
-    }
-
-    /**
-     * SETTERS
-     */
-    public void setHoraPrevista(Instant horaPrevista) {
-        this.horaPrevista = horaPrevista;
-    }
-
-    public void setHoraInicio(Instant horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public void setHoraFin(Instant horaFin) {
-        this.horaFin = horaFin;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    public Instant getHoraPrevista() {
+        return horaPrevista;
+    }
+
+    public void setHoraPrevista(Instant horaPrevista) {
+        this.horaPrevista = horaPrevista;
+    }
+
+    public Duration getDuracionPrevista() {
+        return duracionPrevista;
+    }
+
     public void setDuracionPrevista(Duration duracionPrevista) {
         this.duracionPrevista = duracionPrevista;
+    }
+
+    public Instant getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Instant horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Instant getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(Instant horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public List<Asistencia> getAsistencias() {
+        return asistencias;
     }
 
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
     }
 
+    public List<Invitacion> getInvitaciones() {
+        return invitaciones;
+    }
+
     public void setInvitaciones(List<Invitacion> invitaciones) {
         this.invitaciones = invitaciones;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
     }
 
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
 
+    public Empleado getOrganizador() {
+        return organizador;
+    }
+
     public void setOrganizador(Empleado organizador) {
         this.organizador = organizador;
+    }
+
+    public org.example.tipoReunion getTipoReunion() {
+        return tipoReunion;
     }
 
     public void setTipoReunion(org.example.tipoReunion tipoReunion) {
         this.tipoReunion = tipoReunion;
     }
 
+    public List<Invitable> getParticipantes() {
+        return participantes;
+    }
+
     public void setParticipantes(List<Invitable> participantes) {
         this.participantes = participantes;
     }
-    public void imprimirDetallesRetrasos() {
-        List<Empleado> empleadosRetrasados = obtenerRetrasos();
-        if (empleadosRetrasados.isEmpty()) {
-            System.out.println("No hay retrasos.");
-        } else {
-            System.out.println("Detalles de retrasos:");
-            empleadosRetrasados.forEach(System.out::println);
-        }
-    }
-
 }

@@ -13,15 +13,35 @@ public class Asistencia {
         this.horaLlegada = horaLlegada;
     }
 
-    public Instant getHoraLlegada() {
-        return horaLlegada;
+    //toString
+    @Override
+    public String toString() {
+        return "Asistencia{" +
+                "empleado=" + empleado +
+                ", horaLlegada=" + horaLlegada +
+                ", asistio=" + asistio +
+                '}';
     }
+    //Getters y Setters
+
 
     public Empleado getEmpleado() {
         return empleado;
     }
 
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public void setHoraLlegada(Instant horaLlegada) {
+        this.horaLlegada = horaLlegada;
+    }
+
     public boolean getAsistio() {
         return asistio;
+    }
+
+    public void setAsistio(boolean asistio) {
+        this.asistio = asistio;
     }
 }

@@ -12,25 +12,6 @@ class Invitacion {
         this.horaEnvio = horaEnvio;
     }
 
-    // Getters y setters
-    public Invitable getDestinatario() {
-        return destinatario;
-    }
-
-    public void setDestinatario(Invitable destinatario) {
-        this.destinatario = destinatario;
-    }
-
-
-    public Instant getHoraEnvio() {
-        return horaEnvio;
-    }
-
-    public void setHoraEnvio(Instant horaEnvio) {
-        this.horaEnvio = horaEnvio;
-    }
-
-
     public void enviar() {
         String mensaje = construirMensajeInvitacion();
         System.out.println(mensaje);
@@ -43,6 +24,40 @@ class Invitacion {
         return "El organizador " + organizador.getNombre() + " ha enviado una invitación ";
     }
 
+    //toString
 
+    @Override
+    public String toString() {
+        return "Invitacion{" +
+                "destinatario=" + destinatario +
+                ", reunion=" + reunion +
+                ", horaEnvio=" + horaEnvio +
+                '}';
+    }
 
+    //Getters y Setters
+
+    public Invitable getDestinatario() {
+        return destinatario;
+    }
+
+    public void setDestinatario(Invitable destinatario) {
+        this.destinatario = destinatario;
+    }
+
+    public Reunion getReunion() {
+        return reunion;
+    }
+
+    public void setReunion(Reunion reunion) {
+        this.reunion = reunion;
+    }
+
+    public Instant getHoraEnvio() {
+        return horaEnvio;
+    }
+
+    public void setHoraEnvio(Instant horaEnvio) {
+        this.horaEnvio = horaEnvio;
+    }
 }

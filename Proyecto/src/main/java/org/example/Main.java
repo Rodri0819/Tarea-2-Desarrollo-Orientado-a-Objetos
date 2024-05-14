@@ -28,20 +28,27 @@ public class Main {
         reunionVirtual.agregarParticipante(martin);
         reunionVirtual.agregarParticipante(tomas);
 
+
+        reunionVirtual.agregarNota("Por favor marcar asistencia.");
+        reunionVirtual.agregarNota("Avisar a los que no asistieron sobre la reunión.");
+
+
         // Inicio de la reunión
         reunionVirtual.iniciar();
+        reunionVirtual.listarNotas();
 
-        // Marcar asistencia
+
         reunionVirtual.marcarAsistencia(martin, Instant.now()); // Martín llega a tiempo
         reunionVirtual.marcarAsistencia(rodrigo, Instant.now().plusSeconds(5)); // Rodrigo llega 5 minutos tarde
 
         try {
-            Thread.sleep(6*1000);  // Simula una duración de 10 segundos para la reunión
+
+            Thread.sleep(10*1000);  // Simula una duración de 10 segundos para la reunión
+            // Marcar asistencia
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println("La simulación de la reunión fue interrumpida");
         }
-
 
 
         // Finalización de la reunión
