@@ -1,13 +1,13 @@
 package org.example;
 
-import java.time.*;
+
 import java.util.List;
 import java.util.Date;
 import java.util.ArrayList;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.stream.Collectors;
 
-/**
- * Clase abstracta que representa una reunión con participantes, asistencias y organizador.
- */
 abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
@@ -21,14 +21,6 @@ abstract class Reunion {
     private tipoReunion tipoReunion;
     private List<Invitable> participantes;
 
-    /**
-     * Constructor para crear una reunión.
-     * @param fecha Fecha de la reunión.
-     * @param horaPrevista Hora prevista para iniciar la reunión.
-     * @param duracionPrevista Duración prevista de la reunión.
-     * @param organizador Empleado que organiza la reunión.
-     * @param tipoReunion Tipo de la reunión.
-     */
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, tipoReunion tipoReunion) {
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -40,220 +32,200 @@ abstract class Reunion {
         this.notas = new ArrayList<>();
         this.participantes = new ArrayList<>();
     }
-    /**
-     * Obtiene una lista de empleados que fueron invitados y marcaron asistencia.
-     * @return Lista de empleados que asistieron.
-     */
-    public void marcarAsistencia(Empleado empleado) {
-        // Verifica si el empleado ya ha sido marcado como asistente
-        for (Asistencia asistenciaExistente : this.asistencias) {
-            if (asistenciaExistente.getEmpleado().equals(empleado)) {
-                System.out.println("Asistencia ya marcada para: " + empleado.getNombre());
-                return;  // Si ya está marcado, sale del método para evitar duplicados
-            }
-        }
-        Asistencia nuevaAsistencia = new Asistencia(empleado, true);
-        this.asistencias.add(nuevaAsistencia);
-        System.out.println("Asistencia marcada para: " + empleado.getNombre());
-    }
 
-
-    /**
-     * Obtiene una lista de empleados que fueron invitados pero no asistieron a la reunión.
-     * @return Lista de empleados ausentes.
-     */
-    public List<Empleado> obtenerAusencias() {
-        List<Empleado> ausentes = new ArrayList<>();
-        for (Invitacion invitacion : this.invitaciones) {
-            boolean asistio = false;
-            if (invitacion.getDestinatario() instanceof Empleado) {
-                Empleado empleadoInvitado = (Empleado) invitacion.getDestinatario();
-                for (Asistencia asistencia : this.asistencias) {
-                    if (asistencia.getEmpleado().equals(empleadoInvitado) && asistencia.getAsistio()) {
-                        asistio = true;
-                        break;
-                    }
-                }
-                if (!asistio) {
-                    ausentes.add(empleadoInvitado);
-                }
-            }
-        }
-        return ausentes;
-    }
-
-
-    /**
-     * Obtiene una lista de empleados que llegaron tarde a la reunión.
-     * @return Lista de empleados que se registraron como retrasados.
-     */
-    public List<Empleado> obtenerRetrasos() {
-        //Se delcara la lista de retrasados
-        List<Empleado> retrasados = new ArrayList<>();
-        //Recorre la asistencia
-        for (Asistencia asistencia : this.asistencias) {
-            //Si está en la instancia de la clase retraso
-            if (asistencia instanceof Retraso) {
-                //Se añade a la lista de retraso
-                retrasados.add(asistencia.getEmpleado());
-            }
-        }
-        return retrasados;
-    }
-
-    /**
-     * Calcula el total de asistencias a la reunión.
-     * @return Número total de asistentes que confirmaron su presencia.
-     */
-    public int totalAsistencias() {
-        return asistencias.size();
-    }
-
-    /**
-     * Calcula el porcentaje de asistencia en relación con el total de invitados.
-     * @return Porcentaje de asistencia.
-     */
-    public float obtenerPorcentajeAsistencia() {
-        int totalInvitados = this.invitaciones.size();
-        int totalAsistentes = this.asistencias.size();
-        float porcentajeAsistencia = 0.0f;
-
-        if (totalInvitados > 0) {
-            porcentajeAsistencia = (float) totalAsistentes / totalInvitados * 100.0f; // Conversión explícita y multiplicación por 100 para obtener el porcentaje
-        }
-
-        return porcentajeAsistencia;
-    }
-
-    /**
-     * Calcula la duración real de la reunión basada en la hora de inicio y fin.
-     * @return Duración real de la reunión.
-     */
-    public Duration calcularTiempoReal() {
-        if (horaInicio != null && horaFin != null) {
-            return Duration.between(horaInicio, horaFin);
-        }
-        return Duration.ZERO;
-    }
-
-
-    /**
-     * Registra el momento de inicio de la reunión.
-     */
     public void iniciar() {
         this.horaInicio = Instant.now();
+        System.out.println("Reunión iniciada a las: " + this.horaInicio);
     }
 
-    /**
-     * Registra el momento de finalización de la reunión.
-     */
     public void finalizar() {
         this.horaFin = Instant.now();
+        System.out.println("Reunión finalizada a las: " + this.horaFin);
     }
 
-    /**
-     * Agrega un participante a la reunión y envía una invitación.
-     * @param participante Objeto Invitable que será agregado a la lista de participantes.
-     */
+    public void marcarAsistencia(Empleado empleado, Instant horaLlegada) {
+        if (this.horaInicio == null) {
+            System.out.println("La reunión aún no ha comenzado.");
+            return;
+        }
+
+        // Comprobación si el empleado ya ha sido marcado como asistente
+        for (Asistencia asistenciaExistente : asistencias) {
+            if (asistenciaExistente.getEmpleado().equals(empleado)) {
+                System.out.println("Asistencia ya marcada para: " + empleado.getNombre());
+                return;
+            }
+        }
+
+        // Comprueba si la llegada es antes de la hora de inicio más un margen
+        boolean asistio = !horaLlegada.isAfter(horaInicio.plusSeconds(5));  // 5 segundos de margen
+        Asistencia nuevaAsistencia = asistio ? new Asistencia(empleado, asistio, horaLlegada) :
+                new Retraso(empleado, horaLlegada, this.horaInicio);
+
+        this.asistencias.add(nuevaAsistencia);
+
+        if (asistio) {
+            System.out.println("Asistencia marcada como presente para: " + empleado.getNombre());
+        } else {
+            System.out.println("Retraso de " + Duration.between(this.horaInicio, horaLlegada).toSeconds() + " segundos para: " + empleado.getNombre());
+        }
+    }
+
+    public List<Empleado> obtenerAusencias() {
+        return participantes.stream()
+                .filter(p -> p instanceof Empleado) // Asegura que Invitable es un Empleado
+                .map(p -> (Empleado)p) // Hace un cast seguro de Invitable a Empleado
+                .filter(emp -> asistencias.stream().noneMatch(a -> a.getEmpleado().equals(emp)))
+                .collect(Collectors.toList());
+    }
+
+    public int totalAsistencias() {
+        return (int) asistencias.stream().filter(Asistencia::getAsistio).count();
+    }
+
+    public float obtenerPorcentajeAsistencia() {
+        int totalInvitados = participantes.size();
+        int totalAsistentes = totalAsistencias();
+        return totalInvitados > 0 ? (float) totalAsistentes / totalInvitados * 100.0f : 0.0f;
+    }
+
+    public Duration calcularTiempoReal() {
+        return (horaInicio != null && horaFin != null) ? Duration.between(horaInicio, horaFin) : Duration.ZERO;
+    }
+
     public void agregarParticipante(Invitable participante) {
-        if (!participantes.contains(participante)) { // Asegurarse de no duplicar participantes
+        if (!participantes.contains(participante)) {
             participantes.add(participante);
             Invitacion invitacion = new Invitacion(participante, this, Instant.now());
             invitaciones.add(invitacion);
-            invitacion.enviar(); // Enviar invitación al agregar al participante
+            invitacion.enviar();
         }
     }
 
-
-
-    /**
-     * GETTERS
-     */
-    public Empleado getOrganizador() {
-        return organizador;
+    public List<Empleado> obtenerRetrasos() {
+        return asistencias.stream()
+                .filter(a -> a instanceof Retraso)
+                .map(a -> a.getEmpleado()) // Aquí estamos seguros de que getEmpleado devuelve Empleado
+                .collect(Collectors.toList());
     }
+
+    public void agregarNota(String contenido) {
+        Nota nota = new Nota(contenido);
+        this.notas.add(nota);
+        System.out.println("Nota agregada: " + contenido);
+    }
+
+    public void listarNotas() {
+        System.out.println("Notas de la reunión:");
+        for (Nota nota : notas) {
+            System.out.println(nota.getContenido());
+        }
+    }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "Reunion{" +
+                "fecha=" + fecha +
+                ", horaPrevista=" + horaPrevista +
+                ", duracionPrevista=" + duracionPrevista +
+                ", horaInicio=" + horaInicio +
+                ", horaFin=" + horaFin +
+                ", asistencias=" + asistencias +
+                ", invitaciones=" + invitaciones +
+                ", notas=" + notas +
+                ", organizador=" + organizador +
+                ", tipoReunion=" + tipoReunion +
+                ", participantes=" + participantes +
+                '}';
+    }
+
+    //Getters y Setters
+
 
     public Date getFecha() {
         return fecha;
-    }
-
-    public Duration getDuracionPrevista() {
-        return duracionPrevista;
-    }
-
-    public Instant getHoraFin() {
-        return horaFin;
-    }
-
-    public Instant getHoraInicio() {
-        return horaInicio;
-    }
-
-    public Instant getHoraPrevista() {
-        return horaPrevista;
-    }
-
-    public org.example.tipoReunion getTipoReunion() {
-        return tipoReunion;
-    }
-
-    public List<Asistencia> getAsistencias() {
-        return asistencias;
-    }
-
-    public List<Invitable> getParticipantes() {
-        return participantes;
-    }
-
-    public List<Invitacion> getInvitaciones() {
-        return invitaciones;
-    }
-
-    public List<Nota> getNotas() {
-        return notas;
-    }
-
-    /**
-     * SETTERS
-     */
-    public void setHoraPrevista(Instant horaPrevista) {
-        this.horaPrevista = horaPrevista;
-    }
-
-    public void setHoraInicio(Instant horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public void setHoraFin(Instant horaFin) {
-        this.horaFin = horaFin;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    public Instant getHoraPrevista() {
+        return horaPrevista;
+    }
+
+    public void setHoraPrevista(Instant horaPrevista) {
+        this.horaPrevista = horaPrevista;
+    }
+
+    public Duration getDuracionPrevista() {
+        return duracionPrevista;
+    }
+
     public void setDuracionPrevista(Duration duracionPrevista) {
         this.duracionPrevista = duracionPrevista;
+    }
+
+    public Instant getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(Instant horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public Instant getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(Instant horaFin) {
+        this.horaFin = horaFin;
+    }
+
+    public List<Asistencia> getAsistencias() {
+        return asistencias;
     }
 
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
     }
 
+    public List<Invitacion> getInvitaciones() {
+        return invitaciones;
+    }
+
     public void setInvitaciones(List<Invitacion> invitaciones) {
         this.invitaciones = invitaciones;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
     }
 
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
 
+    public Empleado getOrganizador() {
+        return organizador;
+    }
+
     public void setOrganizador(Empleado organizador) {
         this.organizador = organizador;
     }
 
+    public org.example.tipoReunion getTipoReunion() {
+        return tipoReunion;
+    }
+
     public void setTipoReunion(org.example.tipoReunion tipoReunion) {
         this.tipoReunion = tipoReunion;
+    }
+
+    public List<Invitable> getParticipantes() {
+        return participantes;
     }
 
     public void setParticipantes(List<Invitable> participantes) {

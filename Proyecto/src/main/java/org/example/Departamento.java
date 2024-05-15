@@ -31,4 +31,31 @@ public class Departamento implements Invitable {
             empleado.invitar(reunion);
         }
     }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "Departamento{" +
+                "nombre='" + nombre + '\'' +
+                ", empleados=" + empleados +
+                '}';
+    }
+
+    //Getters y Setters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
 }

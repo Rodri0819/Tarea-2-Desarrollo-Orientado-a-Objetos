@@ -14,51 +14,6 @@ class Empleado implements Invitable {
         this.correo = correo;
     }
 
-    //Getters
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-
-    //Setters
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setCorreo(String correo){
-            this.correo = correo;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
     @Override
     public void invitar(Reunion reunion) {
         // Define el mensaje base
@@ -73,6 +28,58 @@ class Empleado implements Invitable {
         // Imprime el mensaje
         System.out.println("Invitación enviada a " + nombre + " via email: " + correo + " con detalles: " + mensaje);
     }
+    //toString
 
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id='" + id + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", departamento=" + departamento +
+                '}';
+    }
 
+    //Getters y Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
 }

@@ -12,15 +12,23 @@ class ReunionVirtual extends org.example.Reunion {
         this.enlace = enlace;
     }
 
-    //Getters
+    //toString
+
+    @Override
+    public String toString() {
+        return "ReunionVirtual{" +
+                "enlace='" + enlace + '\'' +
+                '}';
+    }
+
+    //Getters y Setters
+
+
     public String getEnlace() {
         return enlace;
     }
 
-    //Setters
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
-
-
 }

@@ -1,20 +1,47 @@
 package org.example;
 
-class Asistencia {
-    private org.example.Empleado empleado;
+import java.time.Instant;
+
+public class Asistencia {
+    private Empleado empleado;
+    private Instant horaLlegada;
     private boolean asistio;
 
-    public Asistencia(org.example.Empleado empleado, boolean asistio) {
+    public Asistencia(Empleado empleado, boolean asistio, Instant horaLlegada) {
         this.empleado = empleado;
         this.asistio = asistio;
+        this.horaLlegada = horaLlegada;
     }
 
+    //toString
+    @Override
+    public String toString() {
+        return "Asistencia{" +
+                "empleado=" + empleado +
+                ", horaLlegada=" + horaLlegada +
+                ", asistio=" + asistio +
+                '}';
+    }
+    //Getters y Setters
 
-    public org.example.Empleado getEmpleado() {
+
+    public Empleado getEmpleado() {
         return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public void setHoraLlegada(Instant horaLlegada) {
+        this.horaLlegada = horaLlegada;
     }
 
     public boolean getAsistio() {
         return asistio;
+    }
+
+    public void setAsistio(boolean asistio) {
+        this.asistio = asistio;
     }
 }
