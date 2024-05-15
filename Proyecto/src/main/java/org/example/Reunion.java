@@ -1,6 +1,5 @@
 package org.example;
 
-
 import java.util.List;
 import java.util.Date;
 import java.util.ArrayList;
@@ -8,6 +7,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.stream.Collectors;
 
+/**
+ * La clase abstracta Reunion representa una reunión que puede tener asistentes, notas y un organizador.
+ */
 abstract class Reunion {
     private Date fecha;
     private Instant horaPrevista;
@@ -21,6 +23,15 @@ abstract class Reunion {
     private tipoReunion tipoReunion;
     private List<Invitable> participantes;
 
+    /**
+     * Constructor de la clase Reunion.
+     *
+     * @param fecha           La fecha de la reunión.
+     * @param horaPrevista    La hora prevista de la reunión.
+     * @param duracionPrevista La duración prevista de la reunión.
+     * @param organizador     El organizador de la reunión.
+     * @param tipoReunion     El tipo de la reunión.
+     */
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, tipoReunion tipoReunion) {
         this.fecha = fecha;
         this.horaPrevista = horaPrevista;
@@ -33,16 +44,28 @@ abstract class Reunion {
         this.participantes = new ArrayList<>();
     }
 
+    /**
+     * Inicia la reunión registrando la hora de inicio.
+     */
     public void iniciar() {
         this.horaInicio = Instant.now();
         System.out.println("Reunión iniciada a las: " + this.horaInicio);
     }
 
+    /**
+     * Finaliza la reunión registrando la hora de fin.
+     */
     public void finalizar() {
         this.horaFin = Instant.now();
         System.out.println("Reunión finalizada a las: " + this.horaFin);
     }
 
+    /**
+     * Marca la asistencia de un empleado a la reunión.
+     *
+     * @param empleado    El empleado cuya asistencia se va a marcar.
+     * @param horaLlegada La hora de llegada del empleado.
+     */
     public void marcarAsistencia(Empleado empleado, Instant horaLlegada) {
         if (this.horaInicio == null) {
             System.out.println("La reunión aún no ha comenzado.");
@@ -71,6 +94,11 @@ abstract class Reunion {
         }
     }
 
+    /**
+     * Obtiene una lista de empleados que no asistieron a la reunión.
+     *
+     * @return Una lista de empleados ausentes.
+     */
     public List<Empleado> obtenerAusencias() {
         return participantes.stream()
                 .filter(p -> p instanceof Empleado) // Asegura que Invitable es un Empleado
@@ -79,20 +107,40 @@ abstract class Reunion {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Calcula el total de asistencias a la reunión.
+     *
+     * @return El total de asistencias.
+     */
     public int totalAsistencias() {
         return (int) asistencias.stream().filter(Asistencia::getAsistio).count();
     }
 
+    /**
+     * Obtiene el porcentaje de asistencia a la reunión.
+     *
+     * @return El porcentaje de asistencia.
+     */
     public float obtenerPorcentajeAsistencia() {
         int totalInvitados = participantes.size();
         int totalAsistentes = totalAsistencias();
         return totalInvitados > 0 ? (float) totalAsistentes / totalInvitados * 100.0f : 0.0f;
     }
 
+    /**
+     * Calcula la duración real de la reunión.
+     *
+     * @return La duración real de la reunión.
+     */
     public Duration calcularTiempoReal() {
         return (horaInicio != null && horaFin != null) ? Duration.between(horaInicio, horaFin) : Duration.ZERO;
     }
 
+    /**
+     * Agrega un participante a la reunión y envía una invitación.
+     *
+     * @param participante El participante a agregar.
+     */
     public void agregarParticipante(Invitable participante) {
         if (!participantes.contains(participante)) {
             participantes.add(participante);
@@ -102,6 +150,11 @@ abstract class Reunion {
         }
     }
 
+    /**
+     * Obtiene una lista de empleados que llegaron tarde a la reunión.
+     *
+     * @return Una lista de empleados que llegaron tarde.
+     */
     public List<Empleado> obtenerRetrasos() {
         return asistencias.stream()
                 .filter(a -> a instanceof Retraso)
@@ -109,12 +162,20 @@ abstract class Reunion {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Agrega una nota a la reunión.
+     *
+     * @param contenido El contenido de la nota.
+     */
     public void agregarNota(String contenido) {
         Nota nota = new Nota(contenido);
         this.notas.add(nota);
         System.out.println("Nota agregada: " + contenido);
     }
 
+    /**
+     * Lista todas las notas de la reunión.
+     */
     public void listarNotas() {
         System.out.println("Notas de la reunión:");
         for (Nota nota : notas) {
@@ -122,8 +183,11 @@ abstract class Reunion {
         }
     }
 
-    //toString
-
+    /**
+     * Devuelve una representación en cadena del objeto Reunion.
+     *
+     * @return Una cadena que representa la reunión.
+     */
     @Override
     public String toString() {
         return "Reunion{" +
@@ -141,95 +205,203 @@ abstract class Reunion {
                 '}';
     }
 
-    //Getters y Setters
+    // Getters y Setters
 
-
+    /**
+     * Obtiene la fecha de la reunión.
+     *
+     * @return La fecha de la reunión.
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     * Establece la fecha de la reunión.
+     *
+     * @param fecha La fecha a establecer.
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     * Obtiene la hora prevista de la reunión.
+     *
+     * @return La hora prevista de la reunión.
+     */
     public Instant getHoraPrevista() {
         return horaPrevista;
     }
 
+    /**
+     * Establece la hora prevista de la reunión.
+     *
+     * @param horaPrevista La hora prevista a establecer.
+     */
     public void setHoraPrevista(Instant horaPrevista) {
         this.horaPrevista = horaPrevista;
     }
 
+    /**
+     * Obtiene la duración prevista de la reunión.
+     *
+     * @return La duración prevista de la reunión.
+     */
     public Duration getDuracionPrevista() {
         return duracionPrevista;
     }
 
+    /**
+     * Establece la duración prevista de la reunión.
+     *
+     * @param duracionPrevista La duración prevista a establecer.
+     */
     public void setDuracionPrevista(Duration duracionPrevista) {
         this.duracionPrevista = duracionPrevista;
     }
 
+    /**
+     * Obtiene la hora de inicio de la reunión.
+     *
+     * @return La hora de inicio de la reunión.
+     */
     public Instant getHoraInicio() {
         return horaInicio;
     }
 
+    /**
+     * Establece la hora de inicio de la reunión.
+     *
+     * @param horaInicio La hora de inicio a establecer.
+     */
     public void setHoraInicio(Instant horaInicio) {
         this.horaInicio = horaInicio;
     }
 
+    /**
+     * Obtiene la hora de fin de la reunión.
+     *
+     * @return La hora de fin de la reunión.
+     */
     public Instant getHoraFin() {
         return horaFin;
     }
 
+    /**
+     * Establece la hora de fin de la reunión.
+     *
+     * @param horaFin La hora de fin a establecer.
+     */
     public void setHoraFin(Instant horaFin) {
         this.horaFin = horaFin;
     }
 
+    /**
+     * Obtiene la lista de asistencias a la reunión.
+     *
+     * @return La lista de asistencias.
+     */
     public List<Asistencia> getAsistencias() {
         return asistencias;
     }
 
+    /**
+     * Establece la lista de asistencias a la reunión.
+     *
+     * @param asistencias La lista de asistencias a establecer.
+     */
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
     }
 
+    /**
+     * Obtiene la lista de invitaciones enviadas para la reunión.
+     *
+     * @return La lista de invitaciones.
+     */
     public List<Invitacion> getInvitaciones() {
         return invitaciones;
     }
 
+    /**
+     * Establece la lista de invitaciones enviadas para la reunión.
+     *
+     * @param invitaciones La lista de invitaciones a establecer.
+     */
     public void setInvitaciones(List<Invitacion> invitaciones) {
         this.invitaciones = invitaciones;
     }
 
+    /**
+     * Obtiene la lista de notas de la reunión.
+     *
+     * @return La lista de notas.
+     */
     public List<Nota> getNotas() {
         return notas;
     }
 
+    /**
+     * Establece la lista de notas de la reunión.
+     *
+     * @param notas La lista de notas a establecer.
+     */
     public void setNotas(List<Nota> notas) {
         this.notas = notas;
     }
 
+    /**
+     * Obtiene el organizador de la reunión.
+     *
+     * @return El organizador de la reunión.
+     */
     public Empleado getOrganizador() {
         return organizador;
     }
 
+    /**
+     * Establece el organizador de la reunión.
+     *
+     * @param organizador El organizador a establecer.
+     */
     public void setOrganizador(Empleado organizador) {
         this.organizador = organizador;
     }
 
-    public org.example.tipoReunion getTipoReunion() {
+    /**
+     * Obtiene el tipo de reunión.
+     *
+     * @return El tipo de reunión.
+     */
+    public tipoReunion getTipoReunion() {
         return tipoReunion;
     }
 
-    public void setTipoReunion(org.example.tipoReunion tipoReunion) {
+    /**
+     * Establece el tipo de reunión.
+     *
+     * @param tipoReunion El tipo de reunión a establecer.
+     */
+    public void setTipoReunion(tipoReunion tipoReunion) {
         this.tipoReunion = tipoReunion;
     }
 
+    /**
+     * Obtiene la lista de participantes de la reunión.
+     *
+     * @return La lista de participantes.
+     */
     public List<Invitable> getParticipantes() {
         return participantes;
     }
 
+    /**
+     * Establece la lista de participantes de la reunión.
+     *
+     * @param participantes La lista de participantes a establecer.
+     */
     public void setParticipantes(List<Invitable> participantes) {
         this.participantes = participantes;
     }
-
 }

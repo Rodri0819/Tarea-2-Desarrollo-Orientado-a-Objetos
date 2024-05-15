@@ -1,21 +1,34 @@
 package org.example;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
+/**
+ * La clase Informe genera un informe sobre una reunión y lo guarda en un archivo especificado.
+ */
 public class Informe {
     private Reunion reunion;
     private String nombreArchivo;
 
+    /**
+     * Constructor de la clase Informe.
+     *
+     * @param reunion       La reunión sobre la que se generará el informe.
+     * @param nombreArchivo El nombre del archivo donde se guardará el informe.
+     */
     public Informe(Reunion reunion, String nombreArchivo) {
         this.reunion = reunion;
         this.nombreArchivo = nombreArchivo;
     }
 
+    /**
+     * Genera el informe de la reunión y lo escribe en el archivo especificado.
+     */
     public void generarInforme() {
         try (FileWriter writer = new FileWriter(nombreArchivo)) {
-            writer.write("**Informe de Reunión**    ");
+            writer.write("**Informe de Reunión**");
 
             writer.write("\n\n\n");
             writer.write("Fecha y hora de la reunión: " + reunion.getFecha());
@@ -32,16 +45,17 @@ public class Informe {
             if (horas > 0) {
                 writer.write("Duración prevista: " + horas + " hora y " + minutos + " minutos");
                 writer.write("\n\n");
-            }
-            else {
+            } else {
                 writer.write("Duración prevista: " + minutos + " minutos");
                 writer.write("\n\n");
             }
-            writer.write("Duración total: " +reunion.calcularTiempoReal().getSeconds() + " segundos");
+
+            writer.write("Duración total: " + reunion.calcularTiempoReal().getSeconds() + " segundos");
             writer.write("\n\n");
 
             writer.write("Tipo de reunión: " + reunion.getTipoReunion());
             writer.write("\n\n");
+
             writer.write("Modalidad: ");
             if (reunion instanceof ReunionVirtual) {
                 writer.write("Virtual");
@@ -63,9 +77,8 @@ public class Informe {
             for (Asistencia asistencia : empleadosAsistentes) {
                 if (asistencia.getAsistio()) {
                     Empleado empleado = asistencia.getEmpleado();
-                    writer.write(" - " +empleado.getNombre() + " " + empleado.getApellido() + "\n");
+                    writer.write(" - " + empleado.getNombre() + " " + empleado.getApellido() + "\n");
                 }
-
             }
             writer.write("\n");
 

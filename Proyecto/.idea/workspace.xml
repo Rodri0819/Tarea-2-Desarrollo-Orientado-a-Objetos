@@ -5,39 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="733f95f4-637d-43e3-8880-cecfbd04b003" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/informe_reunion.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Informe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AsistenciaTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/DepartamentoTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/InformeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Asistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Asistencia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Departamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Departamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Informe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Informe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Invitable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Invitable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Invitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Invitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Nota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Nota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Retraso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Retraso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Reunion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Reunion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ReunionPresencial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ReunionPresencial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ReunionVirtual.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ReunionVirtual.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/tipoReunion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/tipoReunion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,37 +27,41 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "martin777pro"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;martin777pro&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Rodri0819/Tarea-2-Desarrollo-Orientado-a-Objetos.git",
-    "accountId": "91637450-8112-4f20-b062-ebf92ceb5322"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Rodri0819/Tarea-2-Desarrollo-Orientado-a-Objetos.git&quot;,
+    &quot;accountId&quot;: &quot;91637450-8112-4f20-b062-ebf92ceb5322&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2gUB6RUHjr4ufQym7Am3VDT2KHS" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Testeos",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/miste/OneDrive/Desktop/tarea2/Tarea-2-Desarrollo-Orientado-a-Objetos/Proyecto",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Testeos&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/miste/OneDrive/Desktop/tarea2/Tarea-2-Desarrollo-Orientado-a-Objetos/Proyecto&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -95,6 +79,9 @@
       <option name="presentableId" value="Default" />
       <updated>1715742099397</updated>
       <workItem from="1715742100434" duration="105000" />
+      <workItem from="1715742335191" duration="271000" />
+      <workItem from="1715742832966" duration="1305000" />
+      <workItem from="1715744286217" duration="210000" />
     </task>
     <servers />
   </component>
