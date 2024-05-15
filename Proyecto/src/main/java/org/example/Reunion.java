@@ -231,4 +231,5 @@ abstract class Reunion {
     public void setParticipantes(List<Invitable> participantes) {
         this.participantes = participantes;
     }
+
 }

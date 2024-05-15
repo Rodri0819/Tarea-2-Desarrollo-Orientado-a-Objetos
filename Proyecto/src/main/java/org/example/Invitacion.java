@@ -13,14 +13,12 @@ class Invitacion {
     }
 
     public void enviar() {
-        String mensaje = construirMensajeInvitacion();
+        String mensaje = Invitacionorganizador();
         System.out.println(mensaje);
         destinatario.invitar(reunion);
     }
-    private String construirMensajeInvitacion() {
+    private String Invitacionorganizador() {
         Empleado organizador = reunion.getOrganizador();
-
-
         return "El organizador " + organizador.getNombre() + " ha enviado una invitación ";
     }
 

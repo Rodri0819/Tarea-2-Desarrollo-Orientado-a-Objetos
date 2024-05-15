@@ -21,6 +21,7 @@ public class Departamento implements Invitable {
     }
 
     public void agregarEmpleado(Empleado empleado){
+        empleado.setDepartamento(this.nombre); // Asigna el departamento al empleado
         empleados.add(empleado);
     }
 

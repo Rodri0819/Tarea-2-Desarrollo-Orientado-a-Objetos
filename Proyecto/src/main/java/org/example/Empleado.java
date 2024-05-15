@@ -5,13 +5,15 @@ class Empleado implements Invitable {
     private String apellido;
     private String nombre;
     private String correo;
-    private Departamento departamento;
+    private String departamento;
 
     public Empleado(String id, String apellido, String nombre, String correo) {
         this.id = id;
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;
+        this.departamento = null;
+
     }
 
     @Override
@@ -75,11 +77,11 @@ class Empleado implements Invitable {
         this.correo = correo;
     }
 
-    public Departamento getDepartamento() {
+    public String getDepartamento() {
         return departamento;
     }
 
-    public void setDepartamento(Departamento departamento) {
+    public void setDepartamento(String departamento) {
         this.departamento = departamento;
     }
 }

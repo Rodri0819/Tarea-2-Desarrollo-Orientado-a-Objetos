@@ -1,0 +1,26 @@
+**Informe de Reunión**    
+
+
+Fecha y hora de la reunión: Tue May 14 23:02:33 CLT 2024
+
+Hora de inicio: 2024-05-15T03:02:33.325403100Z
+
+Hora de fin: 2024-05-15T03:02:43.342669500Z
+
+Duración prevista: 1 hora y 50 minutos
+
+Duración total: 10 segundos
+
+Tipo de reunión: TECNICA
+
+Modalidad: Virtual
+
+Enlace o sala: https://meet.example.com/join/12345
+
+Lista de participantes:
+ - Martin Fuentealba
+ - Rodrigo Bascuñán
+
+Notas:
+ - Por favor marcar asistencia.
+ - Avisar a los que no asistieron sobre la reunión.

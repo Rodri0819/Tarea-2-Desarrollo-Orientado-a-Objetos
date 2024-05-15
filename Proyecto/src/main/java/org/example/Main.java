@@ -19,7 +19,8 @@ public class Main {
 
         Date fecha = new Date();
         Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(2);
+        Duration duracionPrevista = Duration.ofMinutes(110);
+
 
         ReunionVirtual reunionVirtual = new ReunionVirtual(fecha, horaPrevista, duracionPrevista, rodrigo, tipoReunion.TECNICA, "https://meet.example.com/join/12345");
 
@@ -84,5 +85,9 @@ public class Main {
         for (Empleado detalle : detallesRetrasos) {
             System.out.println(detalle);
         }
+
+        // Generar el informe
+        Informe informe = new Informe(reunionVirtual, "informe_reunion.txt");
+        informe.generarInforme();
     }
 }

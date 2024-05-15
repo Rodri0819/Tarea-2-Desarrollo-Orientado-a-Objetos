@@ -22,7 +22,6 @@ public class Asistencia {
                 ", asistio=" + asistio +
                 '}';
     }
-    //Getters y Setters
 
 
     public Empleado getEmpleado() {
@@ -43,5 +42,13 @@ public class Asistencia {
 
     public void setAsistio(boolean asistio) {
         this.asistio = asistio;
+    }
+
+    public Instant getHoraLlegada() {
+        return horaLlegada;
+    }
+
+    public boolean isAsistio() {
+        return asistio;
     }
 }
