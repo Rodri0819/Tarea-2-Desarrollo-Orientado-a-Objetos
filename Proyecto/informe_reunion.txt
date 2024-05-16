@@ -1,11 +1,11 @@
 **Informe de Reunión**
 
 
-Fecha y hora de la reunión: Thu May 16 03:44:32 CLT 2024
+Fecha y hora de la reunión: Thu May 16 13:15:30 CLT 2024
 
-Hora de inicio: 2024-05-16T07:44:32.412837600Z
+Hora de inicio: 2024-05-16T17:15:30.375257800Z
 
-Hora de fin: 2024-05-16T07:44:42.417476600Z
+Hora de fin: 2024-05-16T17:15:40.382075600Z
 
 Duración prevista: 1 hora y 50 minutos
 
