@@ -6,7 +6,7 @@ import java.time.Instant;
 /**
  * La clase Retraso representa un retraso en la asistencia de un empleado, extendiendo la clase Asistencia.
  */
-class Retraso extends Asistencia {
+public class Retraso extends Asistencia {
     private Duration duracionRetraso;
 
     /**

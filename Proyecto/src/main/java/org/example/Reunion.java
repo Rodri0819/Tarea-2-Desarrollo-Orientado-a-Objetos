@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * La clase abstracta Reunion representa una reunión que puede tener asistentes, notas y un organizador.
  */
-abstract class Reunion {
+public class Reunion {
     private Date fecha;
     private Instant horaPrevista;
     private Duration duracionPrevista;
@@ -26,11 +26,11 @@ abstract class Reunion {
     /**
      * Constructor de la clase Reunion.
      *
-     * @param fecha           La fecha de la reunión.
-     * @param horaPrevista    La hora prevista de la reunión.
+     * @param fecha            La fecha de la reunión.
+     * @param horaPrevista     La hora prevista de la reunión.
      * @param duracionPrevista La duración prevista de la reunión.
-     * @param organizador     El organizador de la reunión.
-     * @param tipoReunion     El tipo de la reunión.
+     * @param organizador      El organizador de la reunión.
+     * @param tipoReunion      El tipo de la reunión.
      */
     public Reunion(Date fecha, Instant horaPrevista, Duration duracionPrevista, Empleado organizador, tipoReunion tipoReunion) {
         this.fecha = fecha;
@@ -48,9 +48,14 @@ abstract class Reunion {
      * Inicia la reunión registrando la hora de inicio.
      */
     public void iniciar() {
-        this.horaInicio = Instant.now();
-        System.out.println("Reunión iniciada a las: " + this.horaInicio);
+        if (this.horaInicio == null) {
+            this.horaInicio = Instant.now();
+            System.out.println("Reunión iniciada a las: " + this.horaInicio);
+        } else {
+            System.out.println("La reunión ya había sido iniciada previamente.");
+        }
     }
+
 
     /**
      * Finaliza la reunión registrando la hora de fin.
@@ -66,11 +71,17 @@ abstract class Reunion {
      * @param empleado    El empleado cuya asistencia se va a marcar.
      * @param horaLlegada La hora de llegada del empleado.
      */
+
     public void marcarAsistencia(Empleado empleado, Instant horaLlegada) {
         if (this.horaInicio == null) { //Si la horaInicio es nula
             System.out.println("La reunión aún no ha comenzado.");
             return;
         }
+        if (!participantes.contains(empleado)) {
+            System.out.println("El empleado " + empleado.getNombre() + " no está invitado a esta reunión.");
+            return;
+        }
+
 
         for (Asistencia asistenciaExistente : asistencias) { //Recorremos las asistenciaExistente en asistencias
             if (asistenciaExistente.getEmpleado().equals(empleado)) { //Si la asistencia existente de un empleado ya está
@@ -97,33 +108,33 @@ abstract class Reunion {
         this.asistencias.add(nuevaAsistencia); //En esa reunion creada, se añade una nueva asistencia al arreglo asistencias
 
     }
-        /**
-         * Obtiene una lista de empleados que no asistieron a la reunión.
-         *
-         * @return Una lista de empleados ausentes.
-         *
-         */
-        public List<Empleado> obtenerAusencias() {
-            List<Empleado> ausentes = new ArrayList<>(); //Declaracion arreglo ausentes que almacenará objetos del tipo empleado
 
-            for (Invitable participante : participantes) { //Recorremos los empleados participantes
-                if (participante instanceof Empleado) { //Asegurandonos que ese participante es una instancia de empleado (Osea es un empleado)
-                    Empleado empleado = (Empleado) participante; //casting  de participante a empleado
-                    boolean sinAsistencia = true; //Suponemos que el empleado no asiste
-                    for (Asistencia asistencia : asistencias) { //Recorremos las asistencias viendo la asistencia de un empleado
-                        if (asistencia.getEmpleado().equals(empleado)) { // Si el empleado de la asistencia actual es igual al empleado actual
-                            sinAsistencia = false; //Entonces el empleado si asitió
-                            break;
-                        }
-                    }
-                    if (sinAsistencia) {  //Si todavia SinAsistencia es true entonces
-                        ausentes.add(empleado); //Se añade al arreglo de ausentes
+    /**
+     * Obtiene una lista de empleados que no asistieron a la reunión.
+     *
+     * @return Una lista de empleados ausentes.
+     */
+    public List<Empleado> obtenerAusencias() {
+        List<Empleado> ausentes = new ArrayList<>(); //Declaracion arreglo ausentes que almacenará objetos del tipo empleado
+
+        for (Invitable participante : participantes) { //Recorremos los empleados participantes
+            if (participante instanceof Empleado) { //Asegurandonos que ese participante es una instancia de empleado (Osea es un empleado)
+                Empleado empleado = (Empleado) participante; //casting  de participante a empleado
+                boolean sinAsistencia = true; //Suponemos que el empleado no asiste
+                for (Asistencia asistencia : asistencias) { //Recorremos las asistencias viendo la asistencia de un empleado
+                    if (asistencia.getEmpleado().equals(empleado)) { // Si el empleado de la asistencia actual es igual al empleado actual
+                        sinAsistencia = false; //Entonces el empleado si asitió
+                        break;
                     }
                 }
+                if (sinAsistencia) {  //Si todavia SinAsistencia es true entonces
+                    ausentes.add(empleado); //Se añade al arreglo de ausentes
+                }
             }
-
-            return ausentes;
         }
+
+        return ausentes;
+    }
 
     /**
      * Calcula el total de asistencias a la reunión.
@@ -204,7 +215,6 @@ abstract class Reunion {
 
         return retrasados; // Devolvemos la lista de empleados que llegaron tarde
     }
-
 
 
     /**

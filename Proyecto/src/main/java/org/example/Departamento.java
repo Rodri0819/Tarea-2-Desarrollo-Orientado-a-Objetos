@@ -7,7 +7,7 @@ import java.util.List;
  * La clase Departamento representa un departamento  de una empresa, con un nombre y una lista de empleados.
  */
 public class Departamento implements Invitable {
-    private String nombre;
+    public String nombre;
     private List<Empleado> empleados;
 
     /**
@@ -74,7 +74,7 @@ public class Departamento implements Invitable {
      *
      * @return El nombre del departamento.
      */
-    public String getNombre() {
+    public String getNombreDepa() {
         return nombre;
     }
 

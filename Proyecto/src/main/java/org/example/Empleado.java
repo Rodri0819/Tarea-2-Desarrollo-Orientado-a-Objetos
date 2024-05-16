@@ -3,7 +3,7 @@ package org.example;
 /**
  * La clase Empleado representa un empleado dentro de una empresa, con detalles como ID, apellido, nombre, correo y departamento.
  */
-class Empleado implements Invitable {
+public class Empleado implements Invitable {
     private String id;
     private String apellido;
     private String nombre;
@@ -23,7 +23,7 @@ class Empleado implements Invitable {
         this.apellido = apellido;
         this.nombre = nombre;
         this.correo = correo;
-        this.departamento = null;
+        this.departamento = departamento;
     }
 
     /**

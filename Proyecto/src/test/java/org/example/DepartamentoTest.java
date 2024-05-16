@@ -1,31 +1,49 @@
 package org.example;
 
-import org.junit.jupiter.api.DisplayName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+import static org.testng.AssertJUnit.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class DepartamentoTest {
-    @DisplayName("Testeos metodos")
+    private Departamento departamento;
+    private Empleado empleadoMock;
+
+    @BeforeEach
+    void setUp() {
+        departamento = new Departamento("Desarrollo");
+        empleadoMock = mock(Empleado.class); // Usamos Mockito para crear un mock de Empleado
+        when(empleadoMock.getNombre()).thenReturn("Juan");
+    }
+
     @Test
-    public void test1() {
-        Departamento departamento1 = new Departamento("Desarrollo");
-        assertEquals("Desarrollo", departamento1.getNombre()); //Desarrollo es el nombre de departamento 1
-        assertTrue(departamento1.getEmpleados().isEmpty()); //Lista de empleados del departamento 1 vacia
-        Empleado Mario = new Empleado("33", "Jose", "Mario", "aaa@gmail.com");
-        departamento1.agregarEmpleado(Mario);//Metodo agregar empleado
-        assertFalse((departamento1.getEmpleados().isEmpty())); // Empleado agregado
-        assertEquals(1,departamento1.obtenerCantidadEmpleados());
-        Empleado Rodrigo = new Empleado("23", "añañin  ", "Rodrigo", "aaa1@gmail.com");
-        departamento1.agregarEmpleado(Rodrigo);
-        Date fecha = new Date();
-        Instant horaPrevista = Instant.now();
-        Duration duracionPrevista = Duration.ofHours(1);
-        ReunionVirtual reunionVirtual = new ReunionVirtual(fecha, horaPrevista, duracionPrevista, Rodrigo, tipoReunion.TECNICA, "https://meet.example.com/join/12345");
-        departamento1.invitar(reunionVirtual);
+    void testAgregarEmpleado() {
+        Empleado empleado1 = new Empleado("100", "Perez", "Juanito", "juanito@outlook.com");
+        departamento.agregarEmpleado(empleado1);
+        assertEquals(1, departamento.obtenerCantidadEmpleados()); //Debe haber solo un empleado
+        assertTrue(departamento.getEmpleados().contains(empleado1)); //Departamento contiene al empleado
+    }
+
+    @Test
+    void testInvitarTodosLosEmpleados() {
+        Reunion reunionMock = mock(Reunion.class);
+        departamento.agregarEmpleado(empleadoMock);
+        departamento.invitar(reunionMock);
+        verify(reunionMock, times(1)).agregarParticipante(empleadoMock);
+    }
+
+    @Test
+    void testObtenerCantidadEmpleados() {
+        assertEquals(0, departamento.obtenerCantidadEmpleados()); //Al empezar hay 0 empleados
+        departamento.agregarEmpleado(empleadoMock);
+        assertEquals(1, departamento.obtenerCantidadEmpleados());
+    }
+
+    @Test
+    void testToString() {
+        String expected = "Departamento{nombre='Desarrollo', empleados=[]}";
+        assertEquals(expected, departamento.toString(), "El método toString no genera la cadena esperada");
     }
 }

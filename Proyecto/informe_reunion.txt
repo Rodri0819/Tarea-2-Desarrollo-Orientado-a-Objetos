@@ -1,0 +1,32 @@
+**Informe de Reunión**
+
+
+Fecha y hora de la reunión: Thu May 16 03:44:32 CLT 2024
+
+Hora de inicio: 2024-05-16T07:44:32.412837600Z
+
+Hora de fin: 2024-05-16T07:44:42.417476600Z
+
+Duración prevista: 1 hora y 50 minutos
+
+Duración total: 10 segundos
+
+Tipo de reunión: MARKETING
+
+Modalidad: Presencial
+
+Enlace o sala: Sala A401
+
+Lista de participantes:
+ - Nombre : Martin   Apellido : Fuentealba   Correo : mfuentealba2023@udec.cl   Departamento : Desarrollo
+ - Nombre : Rodrigo   Apellido : Bascuñán   Correo : rbascunan2023@udec.cl   Departamento : Desarrollo
+
+Lista de retrasos
+ - El empleado Rodrigo Bascuñán se ha retrasado 10 segundos
+
+Lista de  ausentes
+ - Nombre : Tomas   Apellido : Gutierrez   Correo : tgutierrez2023@udec.cl   Departamento : Desarrollo
+
+
+Notas:
+ - Avisar a los que no asistieron sobre la reunión.
