@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * La clase ReunionVirtual representa una reunión virtual que se lleva a cabo en un enlace específico.
  */
-class ReunionVirtual extends org.example.Reunion {
+public class ReunionVirtual extends org.example.Reunion {
     private String enlace;
 
     /**

@@ -5,7 +5,7 @@ import java.time.*;
 /**
  * La clase Invitacion representa una invitación a una reunión, incluyendo el destinatario, la reunión y la hora de envío.
  */
-class Invitacion {
+public class Invitacion {
     private Invitable destinatario;
     private Reunion reunion;
     private Instant horaEnvio;

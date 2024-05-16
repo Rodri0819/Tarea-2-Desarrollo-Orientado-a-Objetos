@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * La clase ReunionPresencial representa una reunión presencial que se lleva a cabo en una sala específica.
  */
-class ReunionPresencial extends org.example.Reunion {
+public class ReunionPresencial extends org.example.Reunion {
     private String sala;
 
     /**
